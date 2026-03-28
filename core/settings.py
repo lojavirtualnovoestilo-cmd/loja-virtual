@@ -2,19 +2,13 @@ import os
 from pathlib import Path
 import dj_database_url
 
-# Caminho base do projeto
+# 1. Caminhos e Segurança
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Chave de segurança (Mantenha em segredo!)
 SECRET_KEY = 'django-insecure-bs-0+rc7atrk3c+6wl4x%4&mq1crrhngp5#x)r@=n2tx#l11n3'
-
-# DEBUG deve ser True para testes, False em produção real
-DEBUG = True
-
-# Links autorizados a acessar o site
+DEBUG = True # Mantenha True para vermos erros se houver, depois mudamos
 ALLOWED_HOSTS = ['loja-virtual-t5sm.onrender.com', '127.0.0.1', 'localhost']
 
-# Definição dos Apps instalados
+# 2. Aplicativos
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -22,12 +16,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'produtos', # Seu app de roupas
+    'produtos', 
 ]
 
+# 3. Middleware (Segurança e Estáticos)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # Ajuda a carregar estilos no Render
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -38,11 +33,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'core.urls'
 
-# Configuração do visual (Templates)
+# 4. Visual (Templates)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'], # Pasta onde ficará o seu home.html
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -56,30 +51,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# BANCO DE DADOS (Configurado para máxima estabilidade no Supabase)
-# Usando o modo Pooler (porta 6543) para evitar erros de rede no Render
-# BANCO DE DADOS - CORRIGIDO E DIRETO
+# 5. BANCO DE DADOS (Ajustado para o Pooler do Supabase - Sem erros de socket)
 DATABASES = {
     'default': dj_database_url.parse('postgresql://postgres:AUosKuyU8y7WBr8E@://aws-0-sa-east-1.pooler.supabase.com')
 }
 
-# Validação de senhas
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
-]
-
-# Idioma e fuso horário
+# 6. Idioma e Arquivos Estáticos
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
-# Arquivos Estáticos (CSS, Imagens, JS)
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Padrão para campos de ID
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
