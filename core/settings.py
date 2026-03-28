@@ -51,7 +51,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# 5. BANCO DE DADOS (Ajustado para o Pooler do Supabase - Sem erros de socket)
+# BANCO DE DADOS - FORÇANDO A ROTA CORRETA
 DATABASES = {
     'default': dj_database_url.parse('postgresql://postgres:AUosKuyU8y7WBr8E@://aws-0-sa-east-1.pooler.supabase.com')
 }
