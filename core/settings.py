@@ -58,11 +58,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # BANCO DE DADOS (Configurado para máxima estabilidade no Supabase)
 # Usando o modo Pooler (porta 6543) para evitar erros de rede no Render
+# BANCO DE DADOS - CORRIGIDO E DIRETO
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://postgres:AUosKuyU8y7WBr8E@://aws-0-sa-east-1.pooler.supabase.com',
-        conn_max_age=600
-    )
+    'default': dj_database_url.parse('postgresql://postgres:AUosKuyU8y7WBr8E@://aws-0-sa-east-1.pooler.supabase.com')
 }
 
 # Validação de senhas
