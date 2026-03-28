@@ -50,7 +50,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# 5. BANCO DE DADOS - CONFIGURAÇÃO MANUAL DIRETA (Resolve erro de Socket)
+# BANCO DE DADOS - CONFIGURAÇÃO MANUAL FORÇADA (MATA ERRO DE SOCKET)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -61,6 +61,7 @@ DATABASES = {
         'PORT': '6543',
     }
 }
+
 
 # 6. Idioma e Arquivos Estáticos
 LANGUAGE_CODE = 'pt-br'
