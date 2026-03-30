@@ -1,13 +1,12 @@
 import os
 from pathlib import Path
+import dj_database_url
 
-# 1. Caminhos e Segurança
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bs-0+rc7atrk3c+6wl4x%4&mq1crrhngp5#x)r@=n2tx#l11n3'
 DEBUG = True 
 ALLOWED_HOSTS = ['loja-virtual-t5sm.onrender.com', '127.0.0.1', 'localhost']
 
-# 2. Aplicativos (Garanta que 'produtos' esteja aqui)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -18,7 +17,6 @@ INSTALLED_APPS = [
     'produtos', 
 ]
 
-# 3. Middleware (Configurado para o Render)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -32,7 +30,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'core.urls'
 
-# 4. Visual (Templates)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -50,20 +47,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# BANCO DE DADOS - CONFIGURAÇÃO MANUAL FORÇADA (MATA ERRO DE SOCKET)
+# --- AQUI ESTÁ O CONSERTO DEFINITIVO ---
+# Usamos o link DIRETO do Pooler do Supabase para matar o erro de socket
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'AUosKuyU8y7WBr8E',
-        'HOST': 'aws-0-sa-east-1.pooler.supabase.com',
-        'PORT': '6543',
-    }
+    'default': dj_database_url.parse('postgresql://postgres:AUosKuyU8y7WBr8E@://aws-0-sa-east-1.pooler.supabase.com')
 }
+# ---------------------------------------
 
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+]
 
-# 6. Idioma e Arquivos Estáticos
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
