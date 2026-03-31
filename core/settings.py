@@ -47,12 +47,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# --- AQUI ESTÁ O CONSERTO DEFINITIVO ---
-# Usamos o link DIRETO do Pooler do Supabase para matar o erro de socket
+# --- CONSERTO DA CONEXÃO EXTERNA ---
 DATABASES = {
-    'default': dj_database_url.parse('postgresql://postgres:AUosKuyU8y7WBr8E@://aws-0-sa-east-1.pooler.supabase.com')
+    'default': dj_database_url.parse('postgresql://postgres:AUosKuyU8y7WBr8E@://supabase.com')
 }
-# ---------------------------------------
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
