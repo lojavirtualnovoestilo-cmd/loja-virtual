@@ -47,14 +47,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# Substitua o bloco antigo por este:
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'AUosKuyU8y7WBr8E',
-        'HOST': '://supabase.com',
+        'HOST': 'aws-0-sa-east-1.pooler.supabase.com',  # <-- REMOVA o "://", deixe apenas o endereço
         'PORT': '5432',
     }
 }
