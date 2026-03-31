@@ -47,9 +47,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# --- CONSERTO DA CONEXÃO EXTERNA ---
+# Substitua o bloco antigo por este:
 DATABASES = {
-    'default': dj_database_url.parse('postgresql://postgres:AUosKuyU8y7WBr8E@://supabase.com')
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'AUosKuyU8y7WBr8E',
+        'HOST': '://supabase.com',
+        'PORT': '5432',
+    }
 }
 
 
